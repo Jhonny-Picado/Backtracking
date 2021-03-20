@@ -9,13 +9,13 @@ package backtracking;
  *
  * @author Usuario
  */
-public class Backtracking {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-       
-    }
+public class Nodo {
     
+    public String nombre;
+    public Nodo siguiente;
+    
+    public Nodo(String nombre){
+        this.nombre = nombre;
+        this.siguiente = null;
+    }  
 }
