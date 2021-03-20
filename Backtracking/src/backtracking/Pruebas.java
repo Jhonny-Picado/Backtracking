@@ -29,6 +29,7 @@ public class Pruebas {
        Mazo.add(Lugar);
        
        ArrayList<Nodo[]> restricciones = new ArrayList<>();
+       ArrayList<Nodo[]> aleatorio = new ArrayList<>();
        Backtracking backtracking = new Backtracking();
        backtracking.AsignarRestricciones(5, Mazo, restricciones);
        
