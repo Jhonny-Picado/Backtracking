@@ -5,9 +5,14 @@
  */
 package backtracking;
 
+import java.util.ArrayList;
+
 
 public class Pruebas {
+    
+    
     public static void main(String[] args) {
+       
        ListaSimple Sospechoso = new ListaSimple("Sospechosos");
        ListaSimple Arma = new ListaSimple("Armas");
        ListaSimple Motivo = new ListaSimple("Motivos");
@@ -15,8 +20,25 @@ public class Pruebas {
        ListaSimple Lugar = new ListaSimple("Lugares");
        
        CargarCartas(Sospechoso,Arma,Motivo,Parte,Lugar);
+       
+       ArrayList<ListaSimple> Mazo = new ArrayList<>();
+       Mazo.add(Sospechoso);
+       Mazo.add(Arma);
+       Mazo.add(Motivo);
+       Mazo.add(Parte);
+       Mazo.add(Lugar);
+       
+       ArrayList<Nodo[]> restricciones = new ArrayList<>();
+       
+       
+       
+       Backtracking backtracking = new Backtracking();
+       backtracking.AsignarRestricciones(5,Mazo,restricciones);
+
     }
     
+    
+    //Metodo que carga las cartas del juego
     public static void CargarCartas(ListaSimple a, ListaSimple b, ListaSimple c, ListaSimple d, ListaSimple e){
         
         a.insertar(new Nodo("Mejor amigo"));
@@ -60,11 +82,6 @@ public class Pruebas {
         e.insertar(new Nodo("Patio"));
         e.insertar(new Nodo("Balcón"));
         e.insertar(new Nodo("Cocina"));
-        
-        
-       
-        
-        
-       
+
     }
 }

@@ -48,4 +48,32 @@ public class ListaSimple {
             tmp= tmp.siguiente;
         }
     }
+    
+    public int largoLista(){
+        int cant=0;
+        Nodo tmp = this.primerNodo;
+
+        while(tmp!=null){
+            cant +=1;
+            tmp= tmp.siguiente;
+        }
+
+        return cant;
+    }
+    
+    public Nodo BuscarPosicion(int index){
+        
+        int i=0;
+        Nodo tmp= this.primerNodo;
+        while(tmp!=null){
+            
+            if(i==index) return tmp;
+            
+            tmp=tmp.siguiente;
+            i++;
+        }
+        
+        //Aca no llega nunca
+        return null;
+    }
 }
