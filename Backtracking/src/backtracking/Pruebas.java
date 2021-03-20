@@ -29,18 +29,27 @@ public class Pruebas {
        Mazo.add(Lugar);
        
        ArrayList<Nodo[]> restricciones = new ArrayList<>();
-       ArrayList<Nodo[]> aleatorio = new ArrayList<>();
        Backtracking backtracking = new Backtracking();
        backtracking.AsignarRestricciones(5, Mazo, restricciones);
        
        
        Nodo []solucion=Solucion(Mazo,restricciones);
+       Nodo[] aleatorio;
+       aleatorio = new Nodo[5];
        
-       /*
+       FuersaBruta prueba = new FuersaBruta();
+       prueba.Algoritmo(Mazo, solucion, aleatorio);
+       
+       
        System.out.println("--------------------Solucion-------------------");
        for(int i=0;i<5;i++){
            System.out.println(solucion[i].nombre);
-       }*/
+       }
+       
+       System.out.println("--------------------aleatorio-------------------");
+       for(int i=0;i<5;i++){
+           System.out.println(aleatorio[i].nombre);
+       }
     }
     
     
