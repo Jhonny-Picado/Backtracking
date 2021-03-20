@@ -20,7 +20,7 @@ public class Backtracking {
     
     /*
         Metodo que asigna las restricciones que utilizara el backtraking        
-        Recibe como parametros la cantidad de restricciones, el mazo del juuego y el arreglo a rellenar de restricciones
+        Recibe como parametros la cantidad de restricciones, el mazo del juego y el arreglo a rellenar de restricciones
     */
     public void AsignarRestricciones(int cantidad, ArrayList<ListaSimple> mazo, ArrayList<Nodo[]> restricciones){
         
@@ -51,11 +51,11 @@ public class Backtracking {
          
             cantidad--; //Condicion de parada
         }
-        /*
+        
         System.out.println("--------------");
         for(int i=0; i<restricciones.size(); i++){
             System.out.println(restricciones.get(i)[0].nombre +"    "+ restricciones.get(i)[1].nombre );
-        }*/
+        }
     }    
 }
 

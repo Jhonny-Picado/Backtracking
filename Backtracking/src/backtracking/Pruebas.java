@@ -29,12 +29,17 @@ public class Pruebas {
        Mazo.add(Lugar);
        
        ArrayList<Nodo[]> restricciones = new ArrayList<>();
-       
-       
-       
        Backtracking backtracking = new Backtracking();
-       backtracking.AsignarRestricciones(5,Mazo,restricciones);
-
+       backtracking.AsignarRestricciones(5, Mazo, restricciones);
+       
+       
+       Nodo []solucion=Solucion(Mazo,restricciones);
+       
+       /*
+       System.out.println("--------------------Solucion-------------------");
+       for(int i=0;i<5;i++){
+           System.out.println(solucion[i].nombre);
+       }*/
     }
     
     
@@ -84,4 +89,51 @@ public class Pruebas {
         e.insertar(new Nodo("Cocina"));
 
     }
+    
+    
+    public static Nodo[] Solucion(ArrayList<ListaSimple> mazo, ArrayList<Nodo[]> restricciones){
+        
+        Nodo [] solucion= new Nodo[5];
+        
+        while (true){
+            for(int i=0; i<mazo.size(); i++){
+                solucion[i]= mazo.get(i).BuscarPosicion((int)(Math.random()*mazo.get(i).largoLista()));
+            }
+            if(ValidaRestricciones(solucion,restricciones)){
+                break;
+            }
+        }
+        return solucion;
+    }
+    
+    
+    //Funcion que valida las restricciones para sacar la solucion sin estas
+    public static boolean ValidaRestricciones(Nodo[] solucion, ArrayList<Nodo[]> restricciones){
+        
+        //Itera sobre las soluciones
+        for(int i=0; i<5; i++){
+            
+            //Aca itera sobre las restricciones
+            for(int j=0; j<restricciones.size(); j++){
+                
+                
+                //Si la solucion en posicion 'i' es igual a alguna carta de las restricciones en la primera posicion
+                if(solucion[i]==restricciones.get(j)[0]){
+                    
+                    //Si hay una carta coincidente, entonces revisa de nuevo por las soluciones
+                    for(int k=0; k<5; k++){
+                        
+                        //Si alguna carta de la solucion es igual a la pareja la carta con solucion[i], retorna falso
+                        if(solucion[k]==restricciones.get(j)[1]){
+                            return false;
+                        }
+                    }
+                } 
+            }
+        }
+        
+        //Aca llega cuando las restricciones fueron validadas
+        return true;
+    }
+    
 }

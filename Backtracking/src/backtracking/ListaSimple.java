@@ -61,6 +61,7 @@ public class ListaSimple {
         return cant;
     }
     
+    //Metodo que busca por posicion en la lista
     public Nodo BuscarPosicion(int index){
         
         int i=0;
