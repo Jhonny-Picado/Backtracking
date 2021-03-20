@@ -16,6 +16,16 @@ public class Backtracking {
      */
     public static void main(String[] args) {
        
+        ListaSimple l = new ListaSimple("Sospechosos");
+        
+        l.insertar(new Nodo("Mejor amigo"));
+        l.insertar(new Nodo("Novio"));
+        l.insertar(new Nodo("Vecino"));
+        l.insertar(new Nodo("Mensajero"));
+        l.insertar(new Nodo("Extraño"));
+        l.insertar(new Nodo("Hermanastro"));
+        l.insertar(new Nodo("Compañero de Trabajo"));
+        l.imprimir();
     }
     
 }

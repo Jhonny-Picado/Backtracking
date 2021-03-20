@@ -11,9 +11,11 @@ package backtracking;
  */
 public class Nodo {
     
+    //Atributos del nodo
     public String nombre;
     public Nodo siguiente;
     
+    //Constructor del nodo
     public Nodo(String nombre){
         this.nombre = nombre;
         this.siguiente = null;
