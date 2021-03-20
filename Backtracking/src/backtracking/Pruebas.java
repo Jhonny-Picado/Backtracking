@@ -32,7 +32,6 @@ public class Pruebas {
        Backtracking backtracking = new Backtracking();
        backtracking.AsignarRestricciones(5, Mazo, restricciones);
        
-       
        Nodo []solucion=Solucion(Mazo,restricciones);
        Nodo[] aleatorio;
        aleatorio = new Nodo[5];

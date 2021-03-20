@@ -52,11 +52,25 @@ public class Backtracking {
             cantidad--; //Condicion de parada
         }
         
+        System.out.println("--------------");
+        for(int i=0; i<restricciones.size(); i++){
+            System.out.println(restricciones.get(i)[0].nombre +"    "+ restricciones.get(i)[1].nombre );
+        }
+    }
+
+    
+    //Algoritmo de backtracking que resuelve la combinacion de cartas
+    public void Algoritmo(ArrayList<ListaSimple> restricciones, Nodo[]solucion){
+        
+        
+        
+        
+        
+    }
+    
 //        System.out.println("--------------");
 //        for(int i=0; i<restricciones.size(); i++){
 //            System.out.println(restricciones.get(i)[0].nombre +"    "+ restricciones.get(i)[1].nombre );
 //        }
     }    
 }
-
-
