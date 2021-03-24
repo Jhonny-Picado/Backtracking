@@ -52,7 +52,7 @@ public class Backtracking {
             cantidad--; //Condicion de parada
         }
         
-        System.out.println("--------------");
+        System.out.println("------Restricciones--------");
         for(int i=0; i<restricciones.size(); i++){
             System.out.println(restricciones.get(i)[0].nombre +"    "+ restricciones.get(i)[1].nombre );
         }

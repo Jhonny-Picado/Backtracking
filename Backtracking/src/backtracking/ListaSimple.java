@@ -13,7 +13,7 @@ public class ListaSimple {
     
     
     //Atributos de la lista
-    private Nodo primerNodo, ultimoNodo;
+    public Nodo primerNodo, ultimoNodo;
     private String categoria;
     
     
@@ -49,6 +49,7 @@ public class ListaSimple {
         }
     }
     
+    //Funcion que retorna el largo de la lista
     public int largoLista(){
         int cant=0;
         Nodo tmp = this.primerNodo;
