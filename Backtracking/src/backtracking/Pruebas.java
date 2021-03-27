@@ -34,7 +34,7 @@ public class Pruebas {
 
         //Instacia un backtraking
         Backtracking backtracking = new Backtracking();
-        backtracking.AsignarRestricciones(5, Mazo, restricciones);   //Manda a asignar las restricciones
+        backtracking.AsignarRestricciones(35, Mazo, restricciones);   //Manda a asignar las restricciones
 
         Nodo[] solucion = Solucion(Mazo, restricciones);        //Asigna la solucion del ejercicio
         Nodo[] aleatorio = new Nodo[5];
@@ -69,7 +69,7 @@ public class Pruebas {
         Nodo[] posibleSolucion = new Nodo[5];
         System.out.println("--------------------Backtracking-------------------");
         
-        backtracking.Algoritmo(Mazo, solucion, posibleSolucion, 0);         //Prueba el algoritmo de Backtracking
+        backtracking.Algoritmo(Mazo, solucion, posibleSolucion, restricciones, 0);         //Prueba el algoritmo de Backtracking
 
         //Imprime resultados
         System.out.println("--------------------Solucion-------------------");
@@ -77,12 +77,12 @@ public class Pruebas {
             System.out.println(solucion[i].nombre);
         }
 
-        System.out.println("--------------------Solucion Encontrada BackTracking -------------------");
+        System.out.println("--------------------Solucion Encontrada-------------------");
         for (int i = 0; i < 5; i++) {
             System.out.println(aleatorio[i].nombre);
         }
 
-        System.out.println("Cantidad de veces que compara soluciones BackTracking: " + backtracking.cantidad);
+        System.out.println("Cantidad de veces que compara soluciones: " + backtracking.cantidad);
 
     }
 

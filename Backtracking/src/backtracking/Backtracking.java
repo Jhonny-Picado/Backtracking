@@ -67,7 +67,7 @@ public class Backtracking {
     E: un arraylist de listas simple, la solucion al juego, un vector para almacenar la posible solucion
     y un entero que marca la categoria de la carta
     */
-    public void Algoritmo(ArrayList<ListaSimple> mazo, Nodo[] solucion, Nodo[] posibleSolucion, int categoria) {
+    public void Algoritmo(ArrayList<ListaSimple> mazo, Nodo[] solucion, Nodo[] posibleSolucion, ArrayList<Nodo[]> restricciones, int categoria) {
 
         //Valida si se paso de una hoja del arbol, para que retorne
         if (categoria > 4) {
@@ -77,10 +77,10 @@ public class Backtracking {
         Nodo tmp = mazo.get(categoria).primerNodo;      //Captura el primer nodo de cada lista segun la categoria
 
         //Se encicla mientras no se termine la lista en la cual esta iterando y que la bandera este apagada
-        while (tmp != null && !this.flag) {
-
-            //En este bucle se salta las cartas incorrectas
-            while (tmp != null && tmp.incorrecta) {
+        while (tmp != null && !this.flag ) {
+            
+            //En este bucle se salta las cartas incorrectas y valida las restricciones
+            while (tmp != null && (tmp.incorrecta || validaRestricciones(restricciones, tmp, posibleSolucion, categoria))) {
                 tmp = tmp.siguiente;
             }
             
@@ -98,7 +98,7 @@ public class Backtracking {
             
             //Si paso la carta paso las validaciones anteriores, quiere decir que faltan mas cartas para terminar la posible solucion,
             //entonces hace la llamada recursiva, sumándole uno a la categoria, para pasar a la siguiente
-            Algoritmo(mazo, solucion, posibleSolucion, categoria + 1);
+            Algoritmo(mazo, solucion, posibleSolucion, restricciones, categoria + 1);
             
             tmp = tmp.siguiente;
         }
@@ -108,7 +108,6 @@ public class Backtracking {
     public boolean comparacionDeArrays(Nodo[] solucion, Nodo[] posibleSolucion) {
 
         this.cantidad++;
-        
         /*System.out.println("--------------------Posible solucion-------------------");
         for (int i = 0; i < 5; i++) {
             System.out.println(posibleSolucion[i].nombre);
@@ -138,6 +137,48 @@ public class Backtracking {
 
         System.out.println("Aca marco esta incorrecta: " + solucionIncorrecta[random].nombre);
         solucionIncorrecta[random].incorrecta = true;         //Aca marco la bandera incorrecta, como true
+    }
+    
+    
+    //Metodo que valida las restricciones del juego
+    public boolean validaRestricciones(ArrayList<Nodo[]> restricciones, Nodo tmp, Nodo[] posibleSolucion, int categoria) {
+
+        //Recorre las parejas de restricciones
+        for (Nodo[] res : restricciones) {
+
+            //Si la carta temporal, a evaluar esta en la posicion 0 de una pareja de restricciones
+            if (tmp == res[0]) {
+                return validaAuxiliar(tmp, res[1], posibleSolucion, categoria);
+            }
+
+            //Si la carta temporal, a evaluar esta en la posicion 0 de una pareja de restricciones
+            if (tmp == res[1]) {
+                return validaAuxiliar(tmp, res[0], posibleSolucion, categoria);
+            }
+        }
+        return false;
+    }
+
+    
+    //Funcio auxiliar que valida las cartas
+    public boolean validaAuxiliar(Nodo tmp, Nodo pareja, Nodo[] posibleSolucion, int categoria) {
+
+        //Si hay una carta coincidente, entonces revisa de nuevo por las posibles soluciones
+        for (int i = 0; i < categoria; i++) {
+
+            //Si alguna carta de la posible solucion es igual a la pareja la carta con solucion[i], retorna falso
+            if (posibleSolucion[i] == pareja) {
+                
+                /*System.out.println(categoria);
+                System.out.println("Valido la restriccion ->" + tmp.nombre + " , " + posibleSolucion[i].nombre);
+                for (int j = 0; j < categoria; j++) {
+                    System.out.print(posibleSolucion[j].nombre + " , ");
+                }
+                System.out.println();*/
+                return true;
+            }
+        }
+        return false;
     }
 
 }
