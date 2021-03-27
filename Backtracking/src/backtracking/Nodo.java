@@ -10,16 +10,16 @@ package backtracking;
  * @author Usuario
  */
 public class Nodo {
-    
+
     //Atributos del nodo
     public String nombre;
     public Nodo siguiente;
     public boolean incorrecta;
-    
+
     //Constructor del nodo
-    public Nodo(String nombre){
+    public Nodo(String nombre) {
         this.nombre = nombre;
         this.siguiente = null;
         this.incorrecta = false;
-    }  
+    }
 }
