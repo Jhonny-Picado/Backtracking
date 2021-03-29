@@ -117,8 +117,8 @@ public class Backtracking {
         /*
         System.out.println("--------------------Posible solucion-------------------");
         for (int i = 0; i < 5; i++) {
-            System.out.println(posibleSolucion[i].nombre);
-        }*/
+            System.out.print(posibleSolucion[i].nombre);
+        }System.out.println();*/
         
         int contador = 0;
 

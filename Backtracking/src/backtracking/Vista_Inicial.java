@@ -212,55 +212,19 @@ public class Vista_Inicial extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonFuerzaActionPerformed
 
-    
+    //Boton para ver los resultados del Backtracking
     private void BotonBackTrackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBackTrackingActionPerformed
+        
+        //Aca carga todos los datos que se necesitan, probvenientes de el pruebas de esta propia clase
         ArrayList<Nodo[]> posibles = pruebas.posiblesBackTracking;
-
-        System.out.println("**********************Boton BACKTRACKING**********************");
-        System.out.println("**********************Posibles Soluciones**********************");
-        for (int i = 0; i < posibles.size(); i++) {
-
-            for (int j = 0; j < 5; j++) {
-
-                System.out.print(posibles.get(i)[j].nombre + "  ");
-
-            }
-            System.out.println();
-
-        }
-        System.out.println("**********************Marcadas incorrectas**********************");
         ArrayList<Nodo> incorrectas = this.pruebas.incorrectasBackTracking;
-
-        for (int i = 0; i < incorrectas.size(); i++) {
-            System.out.println(incorrectas.get(i).nombre);
-        }
-
-        
         ArrayList<Nodo[]> restricciones = pruebas.restricciones;
-        System.out.println("**********************Restricciones**********************");
-        for(int i=0; i<restricciones.size(); i++){
-            System.out.println(restricciones.get(i)[0].nombre+"   "+restricciones.get(i)[1].nombre);
-        }
+        Nodo solucion[] = this.pruebas.solucion;
+        int horaInicial[]=this.pruebas.tiempoInicialBacktracking;
+        int horaFinal[]=this.pruebas.tiempoFinalBacktracking;
         
-        
-        Nodo n[] = this.pruebas.solucion;
-        System.out.println("**********************Solucion en boton**********************");
-        for (int i = 0; i < 5; i++) {
-            System.out.print(n[i].nombre + "  ");
-        }
-        
-        System.out.println("**********************Tiempo inicial back**********************");
-        int h[]=this.pruebas.tiempoInicialBacktracking;
-        for(int i=0; i<4; i++){
-            
-            System.out.print(h[i]+"  ");
-        }System.out.println();
-        System.out.println("**********************Tiempo final back**********************");
-        h=this.pruebas.tiempoFinalBacktracking;
-        for(int i=0; i<4; i++){
-            
-            System.out.print(h[i]+"  ");
-        }
+        //Y aca crea un nuevo Vista_Backtracking para ver los resultados, le pasa todos los datos necesarios, por el constructor
+        Vista_Backtraking vista = new Vista_Backtraking(posibles, incorrectas, restricciones, solucion, horaInicial, horaFinal);
     }//GEN-LAST:event_BotonBackTrackingActionPerformed
 
 
