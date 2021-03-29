@@ -21,7 +21,7 @@ public class FuersaBruta {
     Algoritmo principal de fuerza bruta para la busqueda de combinaciones de cartas
     E: arreglo de listas simples, arreglo con la solucion, y arreglo temporal con la posible solucion
      */
-    public void Algoritmo(ArrayList<ListaSimple> mazo, Nodo[] solucion, Nodo[] aleatorio) {
+    public void Algoritmo(ArrayList<ListaSimple> mazo, Nodo[] solucion, Nodo[] aleatorio, ArrayList<Nodo[]> posibles) {
 
         int cantidad = 0;     //Contador para ver la cantidad de veces que compara alguna posible solucion
 
@@ -106,7 +106,7 @@ public class FuersaBruta {
                             cantidad++; //Sumo la cantidad de veces que va a compara respuestas
 
                             //Llama a funcion auxiliar en donde revisa la posible solucion
-                            if (comparacionDeArrays(solucion, aleatorio)) {
+                            if (comparacionDeArrays(solucion, aleatorio, posibles)) {
                                 System.out.println("Cantidad de veces que compara soluciones Fuerza Bruta: " + cantidad);
                                 return;
                             }
@@ -122,13 +122,20 @@ public class FuersaBruta {
     }
 
     //Función auxiliar que valida si la posible solucion es verdadera
-    public boolean comparacionDeArrays(Nodo[] solucion, Nodo[] aleatorio) {
-
+    public boolean comparacionDeArrays(Nodo[] solucion, Nodo[] aleatorio, ArrayList<Nodo[]> posibles) {
+        
+        Nodo[] n = new Nodo[5];  
+        
+        System.arraycopy(aleatorio, 0, n, 0, 5);
+        
+        posibles.add(n);
+                
         /*
         System.out.println("--------------------Posible solucion-------------------");
         for (int i = 0; i < 5; i++) {
-            System.out.println(aleatorio[i].nombre);
-        }*/
+            System.out.print(aleatorio[i].nombre+ "  ");
+        }
+        System.out.println();*/
         int contador = 0;
 
         //Ciclo para recorrer los arreglos
@@ -151,7 +158,7 @@ public class FuersaBruta {
             random = (int) (Math.random() * 5);
         }
 
-        System.out.println("Aca marco esta incorrecta: " + solucionIncorrecta[random].nombre);
+        //System.out.println("Aca marco esta incorrecta: " + solucionIncorrecta[random].nombre);
         solucionIncorrecta[random].incorrecta = true;         //Aca marco la bandera incorrecta, como true
     }
 }

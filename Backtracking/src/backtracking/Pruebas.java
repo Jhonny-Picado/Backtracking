@@ -9,11 +9,15 @@ import java.util.ArrayList;
 
 public class Pruebas {
 
+    public ArrayList<Nodo[]> posiblesFuerzaBruta;
+    
     public Pruebas(){   
     }
     
     public void IniciarAlgoritmos(int cantidadRestricciones) {
-
+        
+        this.posiblesFuerzaBruta = new ArrayList<>();
+        
         //Se instancia las listas de cartas
         ListaSimple Sospechoso = new ListaSimple("Sospechosos");
         ListaSimple Arma = new ListaSimple("Armas");
@@ -35,6 +39,7 @@ public class Pruebas {
         //Se crea un arraylist de nodos para las restricciones
         ArrayList<Nodo[]> restricciones = new ArrayList<>();
 
+        
         //Instacia un backtraking
         Backtracking backtracking = new Backtracking();
         backtracking.AsignarRestricciones(cantidadRestricciones, Mazo, restricciones);   //Manda a asignar las restricciones
@@ -43,8 +48,8 @@ public class Pruebas {
         Nodo[] aleatorio = new Nodo[5];
 
         FuersaBruta prueba = new FuersaBruta();      //Instancia la fuerza bruta
-        prueba.Algoritmo(Mazo, solucion, aleatorio); //Prueba el algoritmo de fuerza bruta
-
+        prueba.Algoritmo(Mazo, solucion, aleatorio, this.posiblesFuerzaBruta); //Prueba el algoritmo de fuerza bruta
+        
         System.out.println("--------------------Solucion-------------------");
         for (int i = 0; i < 5; i++) {
             System.out.println(solucion[i].nombre);
@@ -54,7 +59,9 @@ public class Pruebas {
         for (int i = 0; i < 5; i++) {
             System.out.println(aleatorio[i].nombre);
         }
-
+        
+        ArrayList<String> incorrectasFuerza = new ArrayList<>();
+                
         //Setea el mazo, para marcar las cartas que se marcaron como incorrectas, correctas
         for (int i = 0; i < 5; i++) {
             Nodo tmp = Mazo.get(i).primerNodo;
@@ -62,6 +69,7 @@ public class Pruebas {
             while (tmp != null) {
                 if (tmp.incorrecta) {
                     tmp.incorrecta = false;
+                    incorrectasFuerza.add(tmp.nombre);
                 }
 
                 tmp = tmp.siguiente;
@@ -86,7 +94,6 @@ public class Pruebas {
         }
 
         System.out.println("Cantidad de veces que compara soluciones: " + backtracking.cantidad);
-
     }
 
     //Metodo que carga las cartas del juego

@@ -5,6 +5,8 @@
  */
 package backtracking;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jocxa
@@ -34,7 +36,7 @@ public class Vista_Inicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BotonFuerza = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         BotonIniciar = new javax.swing.JButton();
         SpinnerRestricciones = new javax.swing.JSpinner();
@@ -44,7 +46,12 @@ public class Vista_Inicial extends javax.swing.JFrame {
 
         jButton1.setText("Backtraking");
 
-        jButton2.setText("Fuersa Bruta ");
+        BotonFuerza.setText("Fuersa Bruta ");
+        BotonFuerza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonFuerzaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Resultados: ");
 
@@ -66,7 +73,7 @@ public class Vista_Inicial extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
+                            .addComponent(BotonFuerza)
                             .addComponent(jButton1)
                             .addComponent(jLabel1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -91,7 +98,7 @@ public class Vista_Inicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(24, 24, 24)
-                .addComponent(jButton2)
+                .addComponent(BotonFuerza)
                 .addGap(74, 74, 74))
         );
 
@@ -104,12 +111,28 @@ public class Vista_Inicial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BotonIniciarActionPerformed
 
+    private void BotonFuerzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFuerzaActionPerformed
+       ArrayList<Nodo[]> posiblesFuerzaBruta = pruebas.posiblesFuerzaBruta;
+       
+       for(int i=0; i<posiblesFuerzaBruta.size(); i++){
+           
+           for(int j=0; j<5; j++){
+               
+               System.out.print(posiblesFuerzaBruta.get(i)[j].nombre +"  ");
+               
+           }
+           System.out.println();
+           
+       }
+  
+    }//GEN-LAST:event_BotonFuerzaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BotonFuerza;
     public javax.swing.JButton BotonIniciar;
     public javax.swing.JSpinner SpinnerRestricciones;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
