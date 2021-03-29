@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 public class Pruebas {
 
-    public static void main(String[] args) {
+    public Pruebas(){   
+    }
+    
+    public void IniciarAlgoritmos(int cantidadRestricciones) {
 
         //Se instancia las listas de cartas
         ListaSimple Sospechoso = new ListaSimple("Sospechosos");
@@ -34,7 +37,7 @@ public class Pruebas {
 
         //Instacia un backtraking
         Backtracking backtracking = new Backtracking();
-        backtracking.AsignarRestricciones(35, Mazo, restricciones);   //Manda a asignar las restricciones
+        backtracking.AsignarRestricciones(cantidadRestricciones, Mazo, restricciones);   //Manda a asignar las restricciones
 
         Nodo[] solucion = Solucion(Mazo, restricciones);        //Asigna la solucion del ejercicio
         Nodo[] aleatorio = new Nodo[5];
@@ -64,11 +67,11 @@ public class Pruebas {
                 tmp = tmp.siguiente;
             }
         }
-        
+
         //Instancia un nuevo nodo para la prueba del Backtracking
         Nodo[] posibleSolucion = new Nodo[5];
         System.out.println("--------------------Backtracking-------------------");
-        
+
         backtracking.Algoritmo(Mazo, solucion, posibleSolucion, restricciones, 0);         //Prueba el algoritmo de Backtracking
 
         //Imprime resultados
