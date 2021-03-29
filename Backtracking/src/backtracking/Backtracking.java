@@ -67,7 +67,8 @@ public class Backtracking {
     E: un arraylist de listas simple, la solucion al juego, un vector para almacenar la posible solucion
     y un entero que marca la categoria de la carta
     */
-    public void Algoritmo(ArrayList<ListaSimple> mazo, Nodo[] solucion, Nodo[] posibleSolucion, ArrayList<Nodo[]> restricciones, int categoria) {
+    public void Algoritmo(ArrayList<ListaSimple> mazo, Nodo[] solucion, Nodo[] posibleSolucion, ArrayList<Nodo[]> restricciones, int categoria
+                                                                                                    ,ArrayList<Nodo[]> posiblesBackTracking) {
 
         //Valida si se paso de una hoja del arbol, para que retorne
         if (categoria > 4) {
@@ -91,24 +92,30 @@ public class Backtracking {
             posibleSolucion[categoria] = tmp;
 
             //Valida si llega a una hoja del arbol (que el backtracking va formando) y si llego a la solucion tambien
-            if (categoria == 4 && comparacionDeArrays(solucion, posibleSolucion)) {
+            if (categoria == 4 && comparacionDeArrays(solucion, posibleSolucion, posiblesBackTracking)) {
                 this.flag = true;       //Como encontro la solucion entonces activa la bandera 
                 return;         //Detiene esta llamada recursiva
             } 
             
             //Si paso la carta paso las validaciones anteriores, quiere decir que faltan mas cartas para terminar la posible solucion,
             //entonces hace la llamada recursiva, sumándole uno a la categoria, para pasar a la siguiente
-            Algoritmo(mazo, solucion, posibleSolucion, restricciones, categoria + 1);
+            Algoritmo(mazo, solucion, posibleSolucion, restricciones, categoria + 1, posiblesBackTracking);
             
             tmp = tmp.siguiente;
         }
     }
 
     //Función auxiliar que valida si la posible solucion es verdadera
-    public boolean comparacionDeArrays(Nodo[] solucion, Nodo[] posibleSolucion) {
+    public boolean comparacionDeArrays(Nodo[] solucion, Nodo[] posibleSolucion, ArrayList<Nodo[]> posiblesBacktracking) {
 
+        Nodo[] n = new Nodo[5];  
+        
+        System.arraycopy(posibleSolucion, 0, n, 0, 5);
+        
+        posiblesBacktracking.add(n);
         this.cantidad++;
-        /*System.out.println("--------------------Posible solucion-------------------");
+        /*
+        System.out.println("--------------------Posible solucion-------------------");
         for (int i = 0; i < 5; i++) {
             System.out.println(posibleSolucion[i].nombre);
         }*/
@@ -135,7 +142,7 @@ public class Backtracking {
             random = (int) (Math.random() * 5);
         }
 
-        System.out.println("Aca marco esta incorrecta: " + solucionIncorrecta[random].nombre);
+        //System.out.println("Aca marco esta incorrecta: " + solucionIncorrecta[random].nombre);
         solucionIncorrecta[random].incorrecta = true;         //Aca marco la bandera incorrecta, como true
     }
     

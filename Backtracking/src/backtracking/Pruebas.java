@@ -6,17 +6,33 @@
 package backtracking;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Pruebas {
 
-    public ArrayList<Nodo[]> posiblesFuerzaBruta;
+    public ArrayList<Nodo[]> posiblesFuerzaBruta, posiblesBackTracking, restricciones;
+    
+    public ArrayList<Nodo> incorrectasFuerzaBruta, incorrectasBackTracking; 
+    
+    public Nodo[] solucion;
+    
+    public int[] tiempoInicialFuerza, tiempoInicialBacktracking, tiempoFinalFuerza, tiempoFinalBacktracking;
     
     public Pruebas(){   
     }
     
     public void IniciarAlgoritmos(int cantidadRestricciones) {
         
+        //Inicializa los arreglos que tendrán las posibles soluciones
         this.posiblesFuerzaBruta = new ArrayList<>();
+        this.posiblesBackTracking = new ArrayList<>();
+        
+        //Resetea las horas a capturars
+        this.tiempoInicialFuerza = new int [4];
+        this.tiempoInicialBacktracking = new int [4];
+        this.tiempoFinalFuerza = new int[4];
+        this.tiempoFinalBacktracking = new int [4];
         
         //Se instancia las listas de cartas
         ListaSimple Sospechoso = new ListaSimple("Sospechosos");
@@ -37,18 +53,19 @@ public class Pruebas {
         Mazo.add(Lugar);
 
         //Se crea un arraylist de nodos para las restricciones
-        ArrayList<Nodo[]> restricciones = new ArrayList<>();
+        this.restricciones = new ArrayList<>();
 
-        
         //Instacia un backtraking
         Backtracking backtracking = new Backtracking();
         backtracking.AsignarRestricciones(cantidadRestricciones, Mazo, restricciones);   //Manda a asignar las restricciones
 
-        Nodo[] solucion = Solucion(Mazo, restricciones);        //Asigna la solucion del ejercicio
+        this.solucion = Solucion(Mazo, restricciones);        //Asigna la solucion del ejercicio
         Nodo[] aleatorio = new Nodo[5];
 
         FuersaBruta prueba = new FuersaBruta();      //Instancia la fuerza bruta
+        CapturarHora(this.tiempoInicialFuerza);
         prueba.Algoritmo(Mazo, solucion, aleatorio, this.posiblesFuerzaBruta); //Prueba el algoritmo de fuerza bruta
+        CapturarHora(tiempoFinalFuerza);
         
         System.out.println("--------------------Solucion-------------------");
         for (int i = 0; i < 5; i++) {
@@ -60,7 +77,7 @@ public class Pruebas {
             System.out.println(aleatorio[i].nombre);
         }
         
-        ArrayList<String> incorrectasFuerza = new ArrayList<>();
+        this.incorrectasFuerzaBruta = new ArrayList<>();
                 
         //Setea el mazo, para marcar las cartas que se marcaron como incorrectas, correctas
         for (int i = 0; i < 5; i++) {
@@ -69,19 +86,34 @@ public class Pruebas {
             while (tmp != null) {
                 if (tmp.incorrecta) {
                     tmp.incorrecta = false;
-                    incorrectasFuerza.add(tmp.nombre);
+                    incorrectasFuerzaBruta.add(tmp);
                 }
 
                 tmp = tmp.siguiente;
             }
         }
 
+        
         //Instancia un nuevo nodo para la prueba del Backtracking
         Nodo[] posibleSolucion = new Nodo[5];
         System.out.println("--------------------Backtracking-------------------");
 
-        backtracking.Algoritmo(Mazo, solucion, posibleSolucion, restricciones, 0);         //Prueba el algoritmo de Backtracking
-
+        CapturarHora(tiempoInicialBacktracking);
+        backtracking.Algoritmo(Mazo, solucion, posibleSolucion, restricciones, 0, this.posiblesBackTracking);         //Prueba el algoritmo de Backtracking
+        CapturarHora(tiempoFinalBacktracking);
+        
+        this.incorrectasBackTracking = new ArrayList<>();
+        
+        //Guarda las incorrectas del BackTracking
+        for (int i = 0; i < 5; i++) {
+            Nodo tmp = Mazo.get(i).primerNodo;
+            while (tmp != null) {
+                
+                if (tmp.incorrecta) incorrectasBackTracking.add(tmp);
+                tmp = tmp.siguiente;
+            }
+        }
+        
         //Imprime resultados
         System.out.println("--------------------Solucion-------------------");
         for (int i = 0; i < 5; i++) {
@@ -96,6 +128,7 @@ public class Pruebas {
         System.out.println("Cantidad de veces que compara soluciones: " + backtracking.cantidad);
     }
 
+    
     //Metodo que carga las cartas del juego
     public static void CargarCartas(ListaSimple a, ListaSimple b, ListaSimple c, ListaSimple d, ListaSimple e) {
 
@@ -197,4 +230,15 @@ public class Pruebas {
         return true;
     }
 
+    //Metodo que captura la hora del sistema
+    public static void CapturarHora(int [] hora){
+        Calendar calendario = new GregorianCalendar();
+        System.out.println("\nHora : ");
+        hora[0]=calendario.get(Calendar.HOUR);
+        hora[1]=calendario.get(Calendar.MINUTE);
+        hora[2]=calendario.get(Calendar.SECOND);
+        hora[3]=calendario.get(Calendar.MILLISECOND);
+        System.out.println("Hora: "+hora[0]+ " Minuto: "+hora[1]+ " Segundo: "+hora[2]+" Milisegundo "+hora[3]);
+    }
+    
 }

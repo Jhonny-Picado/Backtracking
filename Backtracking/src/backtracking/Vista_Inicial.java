@@ -5,7 +5,14 @@
  */
 package backtracking;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,14 +25,34 @@ public class Vista_Inicial extends javax.swing.JFrame {
      */
     
     Pruebas pruebas;
+    FondoPanel fondo = new FondoPanel();
     
     public Vista_Inicial(Pruebas pruebasE) {
-        initComponents();
+        
+        this.setContentPane(fondo);
+        initComponents();  
+
+        PintarLabel("Dibujo", this.labelDibujo);
+        PintarBoton("Start.png", this.BotonIniciar);
+        
         this.pruebas= pruebasE;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
-
+    
+    public void PintarLabel(String nombre, JLabel label){
+        
+        ImageIcon imageIcon =new ImageIcon("Imagenes\\"+nombre+".jpg");
+        Image imgEscalada = imageIcon.getImage().getScaledInstance(label.getWidth(),label.getHeight(), Image.SCALE_SMOOTH);
+        Icon iconEscalado=new ImageIcon(imgEscalada);
+        label.setIcon(iconEscalado);
+    }
+    
+    public void PintarBoton(String nombre, JButton b) {
+        ImageIcon imgConector = new ImageIcon("Imagenes\\"+nombre);
+        b.setIcon(new ImageIcon(imgConector.getImage().getScaledInstance(b.getWidth(), b.getHeight(), 0)));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,71 +62,102 @@ public class Vista_Inicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         BotonFuerza = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         BotonIniciar = new javax.swing.JButton();
-        SpinnerRestricciones = new javax.swing.JSpinner();
+        BotonBackTracking = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        SpinnerRestricciones = new javax.swing.JSpinner();
+        labelDibujo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Backtraking");
-
-        BotonFuerza.setText("Fuersa Bruta ");
+        BotonFuerza.setText("Fuerza Bruta ");
         BotonFuerza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonFuerzaActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Resultados: ");
-
-        BotonIniciar.setText("Iniciar");
         BotonIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonIniciarActionPerformed(evt);
             }
         });
 
+        BotonBackTracking.setText("Backtraking");
+        BotonBackTracking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBackTrackingActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Javanese Text", 2, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setText("Resultados: ");
+
+        jLabel2.setFont(new java.awt.Font("Javanese Text", 2, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 51));
         jLabel2.setText("Restricciones: ");
+
+        jLabel3.setFont(new java.awt.Font("Dubai", 1, 28)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setText("Juego de Crimenes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BotonFuerza)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(BotonFuerza, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                    .addComponent(BotonBackTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 26, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(47, 47, 47)))
+                        .addComponent(labelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(SpinnerRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
-                        .addComponent(BotonIniciar)
-                        .addGap(80, 80, 80))))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(SpinnerRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SpinnerRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(BotonIniciar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addGap(24, 24, 24)
-                .addComponent(BotonFuerza)
-                .addGap(74, 74, 74))
+                    .addComponent(SpinnerRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotonBackTracking, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(BotonFuerza, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelDibujo, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -114,6 +172,8 @@ public class Vista_Inicial extends javax.swing.JFrame {
     private void BotonFuerzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFuerzaActionPerformed
        ArrayList<Nodo[]> posiblesFuerzaBruta = pruebas.posiblesFuerzaBruta;
        
+       System.out.println("**********************Boton fuerza bruta**********************");
+       System.out.println("**********************Posibles Soluciones**********************");
        for(int i=0; i<posiblesFuerzaBruta.size(); i++){
            
            for(int j=0; j<5; j++){
@@ -124,16 +184,113 @@ public class Vista_Inicial extends javax.swing.JFrame {
            System.out.println();
            
        }
-  
+       System.out.println("**********************Marcadas incorrectas**********************");
+       ArrayList<Nodo> incorrectasFuerzaBruta = this.pruebas.incorrectasFuerzaBruta;
+       
+       for(int i=0; i<incorrectasFuerzaBruta.size(); i++){
+           System.out.println(incorrectasFuerzaBruta.get(i).nombre);
+       }
+       
+       Nodo n[]= this.pruebas.solucion;
+       System.out.println("**********************Solucion en boton**********************");
+       for(int i=0; i<5; i++){
+           System.out.print(n[i].nombre+"  ");
+       }
+
+        System.out.println("**********************Tiempo inicial fuerza**********************");
+        int h[] = this.pruebas.tiempoInicialFuerza;
+        for (int i = 0; i < 4; i++) {
+
+            System.out.print(h[i] + "  ");
+        }System.out.println();
+        System.out.println("**********************Tiempo final fuerza**********************");
+        h = this.pruebas.tiempoFinalFuerza;
+        for (int i = 0; i < 4; i++) {
+
+            System.out.print(h[i] + "  ");
+        }
+
     }//GEN-LAST:event_BotonFuerzaActionPerformed
+
+    
+    private void BotonBackTrackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBackTrackingActionPerformed
+        ArrayList<Nodo[]> posibles = pruebas.posiblesBackTracking;
+
+        System.out.println("**********************Boton BACKTRACKING**********************");
+        System.out.println("**********************Posibles Soluciones**********************");
+        for (int i = 0; i < posibles.size(); i++) {
+
+            for (int j = 0; j < 5; j++) {
+
+                System.out.print(posibles.get(i)[j].nombre + "  ");
+
+            }
+            System.out.println();
+
+        }
+        System.out.println("**********************Marcadas incorrectas**********************");
+        ArrayList<Nodo> incorrectas = this.pruebas.incorrectasBackTracking;
+
+        for (int i = 0; i < incorrectas.size(); i++) {
+            System.out.println(incorrectas.get(i).nombre);
+        }
+
+        
+        ArrayList<Nodo[]> restricciones = pruebas.restricciones;
+        System.out.println("**********************Restricciones**********************");
+        for(int i=0; i<restricciones.size(); i++){
+            System.out.println(restricciones.get(i)[0].nombre+"   "+restricciones.get(i)[1].nombre);
+        }
+        
+        
+        Nodo n[] = this.pruebas.solucion;
+        System.out.println("**********************Solucion en boton**********************");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(n[i].nombre + "  ");
+        }
+        
+        System.out.println("**********************Tiempo inicial back**********************");
+        int h[]=this.pruebas.tiempoInicialBacktracking;
+        for(int i=0; i<4; i++){
+            
+            System.out.print(h[i]+"  ");
+        }System.out.println();
+        System.out.println("**********************Tiempo final back**********************");
+        h=this.pruebas.tiempoFinalBacktracking;
+        for(int i=0; i<4; i++){
+            
+            System.out.print(h[i]+"  ");
+        }
+    }//GEN-LAST:event_BotonBackTrackingActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonBackTracking;
     public javax.swing.JButton BotonFuerza;
     public javax.swing.JButton BotonIniciar;
     public javax.swing.JSpinner SpinnerRestricciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel labelDibujo;
     // End of variables declaration//GEN-END:variables
+
+  class FondoPanel extends JPanel
+    {
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g)
+        {
+            imagen = new ImageIcon(getClass().getResource("/backtracking/fondo.jpg")).getImage();
+            
+            g.drawImage(imagen,0, 0, getWidth(), getHeight(),this);
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+
 }
