@@ -144,10 +144,11 @@ public class Vista_Inicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(SpinnerRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonIniciar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(SpinnerRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -167,48 +168,21 @@ public class Vista_Inicial extends javax.swing.JFrame {
         
         this.pruebas.IniciarAlgoritmos((int) this.SpinnerRestricciones.getValue());
         
+       
     }//GEN-LAST:event_BotonIniciarActionPerformed
 
     private void BotonFuerzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFuerzaActionPerformed
-       ArrayList<Nodo[]> posiblesFuerzaBruta = pruebas.posiblesFuerzaBruta;
-       
-       System.out.println("**********************Boton fuerza bruta**********************");
-       System.out.println("**********************Posibles Soluciones**********************");
-       for(int i=0; i<posiblesFuerzaBruta.size(); i++){
-           
-           for(int j=0; j<5; j++){
-               
-               System.out.print(posiblesFuerzaBruta.get(i)[j].nombre +"  ");
-               
-           }
-           System.out.println();
-           
-       }
-       System.out.println("**********************Marcadas incorrectas**********************");
-       ArrayList<Nodo> incorrectasFuerzaBruta = this.pruebas.incorrectasFuerzaBruta;
-       
-       for(int i=0; i<incorrectasFuerzaBruta.size(); i++){
-           System.out.println(incorrectasFuerzaBruta.get(i).nombre);
-       }
-       
-       Nodo n[]= this.pruebas.solucion;
-       System.out.println("**********************Solucion en boton**********************");
-       for(int i=0; i<5; i++){
-           System.out.print(n[i].nombre+"  ");
-       }
+        //Aca carga todos los datos que se necesitan, probvenientes de el pruebas de esta propia clase
+        ArrayList<Nodo[]> posibles = pruebas.posiblesBackTracking;
+        ArrayList<Nodo> incorrectas = this.pruebas.incorrectasBackTracking;
+        Nodo solucion[] = this.pruebas.solucion;
+        int horaInicial[]=this.pruebas.tiempoInicialFuerza;
+        int horaFinal[]=this.pruebas.tiempoFinalFuerza;
+        
+        //Y aca crea un nuevo Vista_Backtracking para ver los resultados, le pasa todos los datos necesarios, por el constructor
+        Vista_FuersaBruta vista = new Vista_FuersaBruta(posibles, incorrectas, solucion, horaInicial, horaFinal);
 
-        System.out.println("**********************Tiempo inicial fuerza**********************");
-        int h[] = this.pruebas.tiempoInicialFuerza;
-        for (int i = 0; i < 4; i++) {
-
-            System.out.print(h[i] + "  ");
-        }System.out.println();
-        System.out.println("**********************Tiempo final fuerza**********************");
-        h = this.pruebas.tiempoFinalFuerza;
-        for (int i = 0; i < 4; i++) {
-
-            System.out.print(h[i] + "  ");
-        }
+       
 
     }//GEN-LAST:event_BotonFuerzaActionPerformed
 
